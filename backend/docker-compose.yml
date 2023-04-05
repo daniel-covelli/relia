@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  db:
+    image: postgres
+    ports:
+      - "44432:5432"
+    environment:
+      POSTGRES_USER: george
+      POSTGRES_PASSWORD: washington
+      POSTGRES_DB: relia_dev
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
