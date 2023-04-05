@@ -1,0 +1,9 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Relia backend",
+  "main": "index.ts",
+  "author": "Daniel Covelli",
+  "license": "MIT",
+  "private": true
+}
