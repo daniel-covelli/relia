@@ -28,6 +28,7 @@ const app = async () => {
 
   const server = new ApolloServer({
     schema,
+    introspection: true,
     context: context,
     cors: {
       origin: [
