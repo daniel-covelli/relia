@@ -11,6 +11,7 @@ import { DateTimeResolver } from "graphql-scalars";
 import { context } from "./context";
 import { GraphQLScalarType } from "graphql";
 import HealthResolver from "./resolvers/HealthResolver";
+import { ApolloServerPluginLandingPageLocalDefault } from "apollo-server-core";
 
 const app = async () => {
   tq.registerEnumType(SortOrder, {
@@ -24,7 +25,14 @@ const app = async () => {
   });
 
   const PORT = process.env.PORT || 4000;
-  new ApolloServer({ schema, context: context }).listen({ port: PORT }, () =>
+
+  const server = new ApolloServer({
+    schema,
+    context: context,
+    plugins: [ApolloServerPluginLandingPageLocalDefault({ embed: true })],
+  });
+
+  server.listen({ port: PORT }, () =>
     console.log(`
 🚀 Server ready at: http://localhost:${PORT}
 ⭐️  See sample queries: http://pris.ly/e/ts/graphql-typegraphql#using-the-graphql-api`)
