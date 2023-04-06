@@ -12,6 +12,7 @@ import { context } from "./context";
 import { GraphQLScalarType } from "graphql";
 import HealthResolver from "./resolvers/HealthResolver";
 import { ApolloServerPluginLandingPageLocalDefault } from "apollo-server-core";
+import { log } from "console";
 
 const app = async () => {
   tq.registerEnumType(SortOrder, {
@@ -28,7 +29,6 @@ const app = async () => {
 
   const server = new ApolloServer({
     schema,
-    introspection: true,
     context: context,
     cors: {
       origin: [
@@ -36,8 +36,11 @@ const app = async () => {
         "https://studio.apollographql.com",
       ],
     },
+    introspection: true,
     plugins: [ApolloServerPluginLandingPageLocalDefault({ embed: true })],
   });
+
+  console.log("node env", process.env.NODE_ENV);
 
   server.listen({ port: PORT }, () =>
     console.log(`
