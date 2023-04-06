@@ -29,6 +29,12 @@ const app = async () => {
   const server = new ApolloServer({
     schema,
     context: context,
+    cors: {
+      origin: [
+        "https://relia-backend.herokuapp.com",
+        "https://studio.apollographql.com",
+      ],
+    },
     plugins: [ApolloServerPluginLandingPageLocalDefault({ embed: true })],
   });
 
