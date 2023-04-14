@@ -10,7 +10,8 @@
     "test": "jest",
     "clean": "npx react-native-clean-project",
     "ios:pod": "cd ios && pod install && cd ..",
-    "gen": "graphql-codegen --config codegen.ts"
+    "gen": "graphql-codegen --config codegen.ts",
+    "release":" npx react-native run-ios --configuration Release"
   },
   "dependencies": {
     "@apollo/client": "^3.7.11",
