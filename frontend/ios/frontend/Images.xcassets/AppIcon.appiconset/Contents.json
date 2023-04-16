@@ -1,46 +1,55 @@
 {
   "images" : [
     {
+      "filename" : "photo-1490650034439-fd184c3c86a5 8.jpeg",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "20x20"
     },
     {
+      "filename" : "photo-1490650034439-fd184c3c86a5 7.jpeg",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "20x20"
     },
     {
+      "filename" : "photo-1490650034439-fd184c3c86a5 6.jpeg",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "29x29"
     },
     {
+      "filename" : "photo-1490650034439-fd184c3c86a5 5.jpeg",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "29x29"
     },
     {
+      "filename" : "photo-1490650034439-fd184c3c86a5 4.jpeg",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "40x40"
     },
     {
+      "filename" : "photo-1490650034439-fd184c3c86a5 3.jpeg",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "40x40"
     },
     {
+      "filename" : "photo-1490650034439-fd184c3c86a5 2.jpeg",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "60x60"
     },
     {
+      "filename" : "photo-1490650034439-fd184c3c86a5 1.jpeg",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "60x60"
     },
     {
+      "filename" : "photo-1490650034439-fd184c3c86a5.jpeg",
       "idiom" : "ios-marketing",
       "scale" : "1x",
       "size" : "1024x1024"

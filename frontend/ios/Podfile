@@ -41,6 +41,9 @@ target 'frontend' do
     :flipper_configuration => flipper_config,
     # An absolute path to your application root.
     :app_path => "#{Pod::Config.instance.installation_root}/.."
+    
+    # For extensions without React dependencies
+    pod 'react-native-config/Extension', :path => '../node_modules/react-native-config'
   )
 
   target 'frontendTests' do
