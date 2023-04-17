@@ -13,18 +13,18 @@
         <scene sceneID="EHf-IW-A2E">
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                    <view key="view" opaque="NO" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Relia splash screen" translatesAutoresizingMaskIntoConstraints="NO" id="cfQ-f1-tUd">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                            <imageView autoresizesSubviews="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Relia splash screen" translatesAutoresizingMaskIntoConstraints="NO" id="cfQ-f1-tUd">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="cfQ-f1-tUd" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" constant="20" id="TBJ-cA-tez"/>
+                            <constraint firstItem="cfQ-f1-tUd" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="TBJ-cA-tez"/>
                             <constraint firstAttribute="trailing" secondItem="cfQ-f1-tUd" secondAttribute="trailing" id="ZT6-2n-wFV"/>
                             <constraint firstAttribute="bottom" secondItem="cfQ-f1-tUd" secondAttribute="bottom" id="hmr-KE-zvD"/>
                             <constraint firstItem="cfQ-f1-tUd" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="tsq-OE-Lyy"/>
