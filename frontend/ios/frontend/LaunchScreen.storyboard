@@ -17,27 +17,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView autoresizesSubviews="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Relia splash screen" translatesAutoresizingMaskIntoConstraints="NO" id="cfQ-f1-tUd">
+                            <imageView autoresizesSubviews="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YRX-YH-Lcm">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
                         <constraints>
-                            <constraint firstItem="cfQ-f1-tUd" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="TBJ-cA-tez"/>
-                            <constraint firstAttribute="trailing" secondItem="cfQ-f1-tUd" secondAttribute="trailing" id="ZT6-2n-wFV"/>
-                            <constraint firstAttribute="bottom" secondItem="cfQ-f1-tUd" secondAttribute="bottom" id="hmr-KE-zvD"/>
-                            <constraint firstItem="cfQ-f1-tUd" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="tsq-OE-Lyy"/>
+                            <constraint firstAttribute="bottom" secondItem="YRX-YH-Lcm" secondAttribute="bottom" id="B4k-eo-0vc"/>
+                            <constraint firstItem="YRX-YH-Lcm" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="b8P-ke-YC0"/>
+                            <constraint firstAttribute="trailing" secondItem="YRX-YH-Lcm" secondAttribute="trailing" id="kfk-yW-KkM"/>
+                            <constraint firstItem="YRX-YH-Lcm" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="o2Q-0I-V6c"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="52.173913043478265" y="375"/>
+            <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
     </scenes>
     <resources>
-        <image name="Relia splash screen" width="1170" height="2532"/>
+        <image name="splash" width="1170" height="2532"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
