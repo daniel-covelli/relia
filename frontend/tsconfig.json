@@ -1,3 +1,6 @@
 {
-  "extends": "@tsconfig/react-native/tsconfig.json"
+  "extends": "@tsconfig/react-native/tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "./src" /* Base directory to resolve non-absolute module names. */
+  }
 }
