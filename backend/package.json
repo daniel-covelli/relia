@@ -4,6 +4,7 @@
     "dev": "ts-node-dev --no-notify --respawn --transpile-only src/index.ts",
     "postinstall": "tsc",
     "build": "prisma generate",
+    "migrate": "prisma migrate dev --name",
     "start": "node dist/index.js",
     "infra:up": "docker-compose up -d",
     "infra:down": "docker-compose down"
@@ -12,6 +13,7 @@
     "@prisma/client": "4.12.0",
     "apollo-server": "3.12.0",
     "class-validator": "0.14.0",
+    "cuid": "^3.0.0",
     "graphql": "15.8.0",
     "graphql-scalars": "1.21.3",
     "reflect-metadata": "0.1.13",

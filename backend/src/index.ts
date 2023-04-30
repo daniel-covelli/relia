@@ -1,25 +1,16 @@
 import "reflect-metadata";
 import * as tq from "type-graphql";
-import {
-  PostCreateInput,
-  PostResolver,
-  SortOrder,
-} from "./resolvers/PostResolver";
-import { UserResolver } from "./resolvers/UserResolver";
+
 import { ApolloServer } from "apollo-server";
 import { DateTimeResolver } from "graphql-scalars";
 import { context } from "./context";
 import { GraphQLScalarType } from "graphql";
-import HealthResolver from "./resolvers/HealthResolver";
+import GeneralResolver from "./resolvers/GeneralResolver";
 import { ApolloServerPluginLandingPageLocalDefault } from "apollo-server-core";
 
 const app = async () => {
-  tq.registerEnumType(SortOrder, {
-    name: "SortOrder",
-  });
-
   const schema = await tq.buildSchema({
-    resolvers: [PostResolver, UserResolver, PostCreateInput, HealthResolver],
+    resolvers: [GeneralResolver],
     scalarsMap: [{ type: GraphQLScalarType, scalar: DateTimeResolver }],
     validate: { forbidUnknownValues: false },
   });
