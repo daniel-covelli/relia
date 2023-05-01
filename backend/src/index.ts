@@ -19,6 +19,7 @@ import Redis from "ioredis";
 import UserResolver from "./resolvers/UserResolver";
 
 const PORT = process.env.PORT || 4000;
+const COOKIE_DOMAIN = process.env.COOKIE_DOMAIN || "localhost";
 
 export const app = express();
 
@@ -86,7 +87,7 @@ const ready = async () => {
       cookie: {
         secure: process.env.NODE_ENV === "production",
         sameSite: process.env.NODE_ENV === "production" ? "none" : undefined,
-        // domain: "relia-backend.herokuapp.com",
+        domain: COOKIE_DOMAIN,
         path: "/",
         maxAge: 1000 * 60 * 60 * 24 * 30, // 30 days
       },
