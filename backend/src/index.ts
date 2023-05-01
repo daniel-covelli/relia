@@ -71,7 +71,13 @@ const RedisStore = ConnectRedis(session);
 const redisClient = new Redis(
   process.env.NODE_ENV === "production"
     ? process.env.REDIS_TLS_URL!
-    : process.env.REDIS_URL!
+    : process.env.REDIS_URL!,
+  {
+    tls: {
+      rejectUnauthorized:
+        process.env.NODE_ENV === "production" ? false : undefined,
+    },
+  }
 );
 
 const ready = async () => {
