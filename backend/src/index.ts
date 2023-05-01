@@ -98,7 +98,7 @@ const ready = async () => {
       cookie: {
         secure: process.env.NODE_ENV === "production",
         sameSite: process.env.NODE_ENV === "production" ? "none" : undefined,
-        domain: COOKIE_DOMAIN,
+        // domain: COOKIE_DOMAIN,
         path: "/",
         maxAge: 1000 * 60 * 60 * 24 * 30, // 30 days
       },
