@@ -72,12 +72,13 @@ const redisClient = new Redis(
   process.env.NODE_ENV === "production"
     ? process.env.REDIS_TLS_URL!
     : process.env.REDIS_URL!,
-  {
-    tls: {
-      rejectUnauthorized:
-        process.env.NODE_ENV === "production" ? false : undefined,
-    },
-  }
+  process.env.NODE_ENV === "production"
+    ? {
+        tls: {
+          rejectUnauthorized: false,
+        },
+      }
+    : {}
 );
 
 const ready = async () => {
