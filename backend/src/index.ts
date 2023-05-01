@@ -61,7 +61,6 @@ const server = new ApolloServer<UserContext>({
   plugins: [
     ApolloServerPluginDrainHttpServer({ httpServer }),
     ApolloServerPluginLandingPageLocalDefault({
-      embed: true,
       includeCookies: true,
     }),
   ],
