@@ -9,7 +9,7 @@ import { ApolloServerPluginLandingPageLocalDefault } from "@apollo/server/plugin
 import { UserContext, userAuth, userAuthChecker } from "./context";
 import { GraphQLScalarType } from "graphql";
 import GeneralResolver from "./resolvers/GeneralResolver";
-import session, { SessionOptions } from "express-session";
+import session from "express-session";
 import ConnectRedis from "connect-redis";
 import express from "express";
 import compression from "compression";
@@ -68,7 +68,11 @@ const server = new ApolloServer<UserContext>({
 });
 
 const RedisStore = ConnectRedis(session);
-const redisClient = new Redis(process.env.REDIS_URL!);
+const redisClient = new Redis(
+  process.env.NODE_ENV === "production"
+    ? process.env.REDIS_TLS_URL!
+    : process.env.REDIS_URL!
+);
 
 const ready = async () => {
   await server.start();
