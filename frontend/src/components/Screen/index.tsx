@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, StatusBar, ViewStyle } from 'react-native';
+import { SafeAreaView, StatusBar, View, ViewProps } from 'react-native';
 
 import { colors } from '../../consts';
 
@@ -8,17 +8,16 @@ import styles from './styles';
 // set status bar style
 StatusBar.setBarStyle('light-content');
 
-interface ScreenProps {
+interface ScreenProps extends ViewProps {
   children: React.ReactNode;
-  containerStyle?: ViewStyle[];
 }
 
-const Screen: React.FC<ScreenProps> = ({ children, containerStyle }) => {
+const Screen: React.FC<ScreenProps> = ({ children, ...props }) => {
   return (
     <>
       <StatusBar animated={true} backgroundColor={colors.neutrals['900']} />
-      <SafeAreaView style={[styles.default, containerStyle]}>
-        {children}
+      <SafeAreaView style={[styles.default]}>
+        <View {...props}>{children}</View>
       </SafeAreaView>
     </>
   );
