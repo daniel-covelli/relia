@@ -9,7 +9,7 @@ import {
 
 import { AuthHeader, Break, Footer, FormInput, Screen } from 'components';
 
-import { useForm } from 'utils/hooks';
+import { useForm, useKeyboard } from 'utils/hooks';
 import { isEmail, isPasswordValid } from 'utils/validation';
 
 import appStyles from 'styles';
@@ -18,6 +18,7 @@ import styles from './styles';
 const initialFormValues = { email: '', password: '', confirmPassword: '' };
 
 const SignUp: React.FC = () => {
+  const isKeyboardShown = useKeyboard();
   const { handleChange, handleSubmit, data, setData, errors, setErrors } =
     useForm({
       initialValues: initialFormValues,
@@ -87,18 +88,20 @@ const SignUp: React.FC = () => {
                 }}
               />
             </View>
-            <View
-              style={{
-                // flexGrow: 1,
-                flexDirection: 'row',
-                alignItems: 'flex-end',
+            {!isKeyboardShown && (
+              <View
+                style={{
+                  // flexGrow: 1,
+                  flexDirection: 'row',
+                  alignItems: 'flex-end',
 
-                justifyContent: 'flex-end',
-                alignSelf: 'center',
-                // backgroundColor: 'pink',
-              }}>
-              <Text>{'Already have an account?'}</Text>
-            </View>
+                  justifyContent: 'flex-end',
+                  alignSelf: 'center',
+                  // backgroundColor: 'pink',
+                }}>
+                <Text>{'Already have an account?'}</Text>
+              </View>
+            )}
           </View>
         </ScrollView>
         <Footer
