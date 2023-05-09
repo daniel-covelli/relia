@@ -33,6 +33,12 @@ const appStyles = StyleSheet.create({
     color: colors.neutrals['50'],
   },
 
+  mono_14: {
+    fontSize: text.size.xSmall,
+    fontFamily: text.font.plexMonoRegular,
+    color: colors.neutrals['50'],
+  },
+
   sans_38: {
     fontSize: text.size.xxLarge,
     fontFamily: text.font.plexSansRegular,
@@ -63,6 +69,12 @@ const appStyles = StyleSheet.create({
     color: colors.neutrals['50'],
   },
 
+  sans_14: {
+    fontSize: text.size.xSmall,
+    fontFamily: text.font.plexSansRegular,
+    color: colors.neutrals['50'],
+  },
+
   padding_4: {
     padding: 4,
   },
@@ -81,6 +93,30 @@ const appStyles = StyleSheet.create({
 
   padding_32: {
     padding: 32,
+  },
+
+  padding_r_4: {
+    paddingRight: 4,
+  },
+
+  padding_r_8: {
+    paddingRight: 8,
+  },
+
+  padding_r_12: {
+    paddingRight: 12,
+  },
+
+  padding_r: {
+    paddingRight: 16,
+  },
+
+  padding_r_24: {
+    paddingRight: 24,
+  },
+
+  padding_r_32: {
+    paddingRight: 32,
   },
 
   padding_b_4: {
@@ -161,6 +197,26 @@ const appStyles = StyleSheet.create({
 
   radius: {
     borderRadius: 8,
+  },
+
+  flex_row: {
+    flexDirection: 'row',
+  },
+
+  flex_one: {
+    flex: 1,
+  },
+
+  flex_zero: {
+    flex: 0,
+  },
+
+  flex_grow_one: {
+    flexGrow: 1,
+  },
+
+  flex_grow_zero: {
+    flexGrow: 0,
   },
 });
 
