@@ -3,13 +3,9 @@ import { StyleSheet } from 'react-native';
 import appStyles from 'styles';
 
 const styles = StyleSheet.create({
-  container: {
-    justifyContent: 'space-between',
+  view: {
     ...appStyles.flex_grow_one,
-  },
-
-  signIn: {
-    ...appStyles.padding_b_24,
+    ...appStyles.padding_h_32,
   },
 });
 

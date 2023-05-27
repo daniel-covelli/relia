@@ -119,6 +119,30 @@ const appStyles = StyleSheet.create({
     paddingRight: 32,
   },
 
+  padding_l_4: {
+    paddingLeft: 4,
+  },
+
+  padding_l_8: {
+    paddingLeft: 8,
+  },
+
+  padding_l_12: {
+    paddingLeft: 12,
+  },
+
+  padding_l: {
+    paddingLeft: 16,
+  },
+
+  padding_l_24: {
+    paddingLeft: 24,
+  },
+
+  padding_l_32: {
+    paddingLeft: 32,
+  },
+
   padding_b_4: {
     paddingBottom: 4,
   },

@@ -10,13 +10,10 @@ import { reset } from 'utils/navigation';
 const AppLoader: React.FC = () => {
   useUserQuery({
     onCompleted: () => {
-      console.log('OnCompleted');
-
       reset('Home');
     },
     onError: () => {
-      console.log('onError');
-      reset('SignUp');
+      reset('Login');
     },
   });
   return (

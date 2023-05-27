@@ -20,6 +20,7 @@ interface FormInputProps {
   password?: boolean;
   container?: ViewProps;
   input?: TextInputProps;
+  error?: string;
 }
 
 const FormInput: React.FC<FormInputProps> = ({
@@ -28,12 +29,16 @@ const FormInput: React.FC<FormInputProps> = ({
   password,
   container,
   input,
+  error,
 }) => {
   const [visible, setVisible] = useState(false);
   return (
     <View {...container}>
-      <Text style={styles.label}>{label}</Text>
-      <View style={styles.row}>
+      <View style={styles.labelContainer}>
+        <Text style={styles.label}>{label}</Text>
+        {!!error && <Text style={styles.errorText}>{error}</Text>}
+      </View>
+      <View style={[styles.row, error ? styles.errorBorder : undefined]}>
         <TextInput
           accessibilityLabel="Text input field"
           accessibilityHint={`Enter your ${label}`}

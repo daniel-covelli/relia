@@ -11,7 +11,7 @@ import {
   TextLink,
 } from 'components';
 
-import { useCreateUserMutation } from 'generated/graphql';
+import { useLoginMutation } from 'generated/graphql';
 
 import { useForm, useKeyboard } from 'utils/hooks';
 import { navigationRef, reset } from 'utils/navigation';
@@ -22,35 +22,37 @@ import styles from './styles';
 
 const initialFormValues = { email: '', password: '', confirmPassword: '' };
 
-const SignUp: React.FC = () => {
+const Login: React.FC = () => {
   const isKeyboardShown = useKeyboard();
-  const [createUser] = useCreateUserMutation();
+  const [login] = useLoginMutation();
   const { handleChange, handleSubmit, data, setData, errors, setErrors } =
     useForm({
       initialValues: initialFormValues,
       validations: {
         email: {
-          custom: { isValid: isEmail, message: 'Email format invalid' },
+          custom: { isValid: isEmail, message: 'Invalid credentials' },
         },
         password: {
           custom: {
             isValid: isPasswordValid,
-            message: 'Must contain 8 to 50 characters and a number',
-          },
-        },
-        confirmPassword: {
-          match: {
-            field: 'password',
-            message: 'Passwords must match',
+            message: 'Invalid credentials',
           },
         },
       },
       onSubmit: async data => {
         if (!data) return;
-        await createUser({
+        await login({
           variables: {
             email: data.email,
             password: data.password,
+          },
+          onError: error => {
+            console.log('error', JSON.stringify(error, null, 2));
+
+            setErrors({
+              email: 'Invalid credentials',
+              password: 'Invalid password',
+            });
           },
           onCompleted: () => {
             reset('Home');
@@ -59,8 +61,6 @@ const SignUp: React.FC = () => {
       },
     });
 
-  console.log('Errors', JSON.stringify(errors, null, 2));
-
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}
@@ -68,7 +68,7 @@ const SignUp: React.FC = () => {
       <Screen style={styles.container}>
         <AuthHeader />
         <FlexScrollView>
-          <Text style={appStyles.sans_24}>{'Create an Account'}</Text>
+          <Text style={appStyles.sans_24}>{'Log In'}</Text>
           <Break style={appStyles.margin_v_24} />
           <FormInput
             label="Email"
@@ -90,29 +90,19 @@ const SignUp: React.FC = () => {
             }}
             error={errors.password}
           />
-          <FormInput
-            label="Re-enter password"
-            placeholder="Re-enter your password"
-            password
-            container={{ style: appStyles.padding_b_24 }}
-            input={{
-              onChangeText: handleChange('confirmPassword'),
-            }}
-            error={errors.confirmPassword}
-          />
         </FlexScrollView>
         {!isKeyboardShown && (
           <TextLink
-            text="Already have an account?"
-            link="Sign in"
-            onPress={() => navigationRef.navigate('Login')}
+            text="Don't have an account?"
+            link="Sign Up"
+            onPress={() => navigationRef.navigate('SignUp')}
             container={{
               style: styles.signIn,
             }}
           />
         )}
         <Footer
-          title="Sign up"
+          title="Log in"
           button={{ onPress: handleSubmit }}
           container={{ style: appStyles.padding_h_32 }}
         />
@@ -121,4 +111,4 @@ const SignUp: React.FC = () => {
   );
 };
 
-export default SignUp;
+export default Login;

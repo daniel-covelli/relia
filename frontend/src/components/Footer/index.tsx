@@ -16,9 +16,13 @@ interface FooterProps {
   button?: TouchableOpacityProps;
 }
 
-const Footer: React.FC<FooterProps> = ({ title, container, button }) => {
+const Footer: React.FC<FooterProps> = ({
+  title,
+  container: { style, ...container } = {},
+  button,
+}) => {
   return (
-    <View style={styles.container} {...container}>
+    <View style={[styles.container, style]} {...container}>
       <TouchableOpacity
         accessibilityRole="button"
         activeOpacity={0.8}

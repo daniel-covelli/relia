@@ -1,10 +1,9 @@
 import React from 'react';
-import { View } from 'react-native';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { AppLoader, Home, SignUp } from './src/screens';
+import { AppLoader, Home, Login, SignUp } from './src/screens';
 
 import { navigationRef } from 'utils/navigation';
 
@@ -25,7 +24,7 @@ const Navigation: React.FC = () => {
         screenOptions={{ headerShown: false }}>
         <Stack.Screen name="AppLoader" component={AppLoader} />
         <Stack.Screen name="SignUp" component={SignUp} />
-        <Stack.Screen name="Login" component={View} />
+        <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Home" component={Home} />
       </Stack.Navigator>
     </NavigationContainer>

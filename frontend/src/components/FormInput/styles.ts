@@ -10,6 +10,21 @@ const styles = StyleSheet.create({
     ...appStyles.padding_b_4,
   },
 
+  labelContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    flexWrap: 'wrap',
+  },
+
+  errorText: {
+    ...appStyles.sans_16,
+    color: colors.error['500'],
+    textAlign: 'right',
+    flex: 1,
+  },
+
+  errorBorder: { borderColor: colors.error['500'], borderWidth: 2 },
+
   row: {
     backgroundColor: colors.neutrals['500'],
     justifyContent: 'space-between',
