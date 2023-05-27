@@ -52,6 +52,13 @@ const SignUp: React.FC = () => {
             email: data.email,
             password: data.password,
           },
+          onError: error => {
+            if (error.message.includes('Unique')) {
+              setErrors({ email: 'Email already in use' });
+            }
+
+            console.log('error', JSON.stringify(error, null, 2));
+          },
           onCompleted: () => {
             reset('Home');
           },
