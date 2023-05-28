@@ -12,7 +12,8 @@
     "clean": "npx react-native-clean-project",
     "ios:pod": "npx pod-install ios",
     "gen": "graphql-codegen --config codegen.ts",
-    "release": " npx react-native run-ios --configuration Release"
+    "release": " npx react-native run-ios --configuration Release",
+    "testflight": "cd ios && fastlane beta && cd .."
   },
   "dependencies": {
     "@apollo/client": "^3.7.11",

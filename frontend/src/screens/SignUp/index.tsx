@@ -25,48 +25,45 @@ const initialFormValues = { email: '', password: '', confirmPassword: '' };
 const SignUp: React.FC = () => {
   const isKeyboardShown = useKeyboard();
   const [createUser] = useCreateUserMutation();
-  const { handleChange, handleSubmit, data, setData, errors, setErrors } =
-    useForm({
-      initialValues: initialFormValues,
-      validations: {
-        email: {
-          custom: { isValid: isEmail, message: 'Email format invalid' },
-        },
-        password: {
-          custom: {
-            isValid: isPasswordValid,
-            message: 'Must contain 8 to 50 characters and a number',
-          },
-        },
-        confirmPassword: {
-          match: {
-            field: 'password',
-            message: 'Passwords must match',
-          },
+  const { handleChange, handleSubmit, errors, setErrors } = useForm({
+    initialValues: initialFormValues,
+    validations: {
+      email: {
+        custom: { isValid: isEmail, message: 'Email format invalid' },
+      },
+      password: {
+        custom: {
+          isValid: isPasswordValid,
+          message: 'Must contain 8 to 50 characters and a number',
         },
       },
-      onSubmit: async data => {
-        if (!data) return;
-        await createUser({
-          variables: {
-            email: data.email,
-            password: data.password,
-          },
-          onError: error => {
-            if (error.message.includes('Unique')) {
-              setErrors({ email: 'Email already in use' });
-            }
-
-            console.log('error', JSON.stringify(error, null, 2));
-          },
-          onCompleted: () => {
-            reset('Home');
-          },
-        });
+      confirmPassword: {
+        match: {
+          field: 'password',
+          message: 'Passwords must match',
+        },
       },
-    });
-
-  console.log('Errors', JSON.stringify(errors, null, 2));
+    },
+    onSubmit: async data => {
+      if (!data) return;
+      await createUser({
+        variables: {
+          email: data.email,
+          password: data.password,
+        },
+        onError: error => {
+          // TODO: standardize error messaging
+          if (error.message.includes('Unique')) {
+            return setErrors({ email: 'Email already in use' });
+          }
+          // TODO: add generic error toast
+        },
+        onCompleted: () => {
+          reset('Home');
+        },
+      });
+    },
+  });
 
   return (
     <KeyboardAvoidingView
@@ -84,6 +81,7 @@ const SignUp: React.FC = () => {
             input={{
               onChangeText: handleChange('email'),
               keyboardType: 'email-address',
+              autoCapitalize: 'none',
             }}
             error={errors.email}
           />

@@ -3,6 +3,7 @@ import { User } from "../wire/User";
 import { CurrentUser, UserContext } from "../context";
 import prisma from "../lib/prisma";
 import Cryptography from "../lib/crypto";
+import { InvalidCredentialsError } from "../lib/errors";
 
 @Resolver()
 export default class UserResolver {
@@ -14,7 +15,7 @@ export default class UserResolver {
   ): Promise<User> {
     const user = await prisma.user.create({
       data: {
-        email,
+        email: email.toLowerCase(),
         password: await Cryptography.hash(password),
       },
     });
@@ -32,16 +33,16 @@ export default class UserResolver {
   ): Promise<User> {
     const user = await prisma.user.findUnique({
       where: {
-        email,
+        email: email.toLowerCase(),
       },
     });
 
     if (!user?.password) {
-      throw new Error("Invalid email or password");
+      throw new InvalidCredentialsError();
     }
 
     if (!(await Cryptography.compare(password, user.password))) {
-      throw new Error("Invalid email or password");
+      throw new InvalidCredentialsError();
     }
 
     req.session.userId = user.id;

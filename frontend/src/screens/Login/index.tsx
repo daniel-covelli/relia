@@ -13,6 +13,7 @@ import {
 
 import { useLoginMutation } from 'generated/graphql';
 
+import { isInvalidCredentialsError } from 'utils/errors';
 import { useForm, useKeyboard } from 'utils/hooks';
 import { navigationRef, reset } from 'utils/navigation';
 import { isEmail, isPasswordValid } from 'utils/validation';
@@ -25,41 +26,44 @@ const initialFormValues = { email: '', password: '', confirmPassword: '' };
 const Login: React.FC = () => {
   const isKeyboardShown = useKeyboard();
   const [login] = useLoginMutation();
-  const { handleChange, handleSubmit, data, setData, errors, setErrors } =
-    useForm({
-      initialValues: initialFormValues,
-      validations: {
-        email: {
-          custom: { isValid: isEmail, message: 'Invalid credentials' },
-        },
-        password: {
-          custom: {
-            isValid: isPasswordValid,
-            message: 'Invalid credentials',
-          },
+  const { handleChange, handleSubmit, errors, setErrors } = useForm({
+    initialValues: initialFormValues,
+    validations: {
+      email: {
+        custom: { isValid: isEmail, message: 'Invalid credentials' },
+      },
+      password: {
+        custom: {
+          isValid: isPasswordValid,
+          message: 'Invalid credentials',
         },
       },
-      onSubmit: async data => {
-        if (!data) return;
-        await login({
-          variables: {
-            email: data.email,
-            password: data.password,
-          },
-          onError: error => {
-            console.log('error', JSON.stringify(error, null, 2));
-
-            setErrors({
+    },
+    onSubmit: async data => {
+      if (!data) return;
+      await login({
+        variables: {
+          email: data.email,
+          password: data.password,
+        },
+        onError: err => {
+          if (isInvalidCredentialsError(err)) {
+            return setErrors({
               email: 'Invalid credentials',
               password: 'Invalid password',
             });
-          },
-          onCompleted: () => {
-            reset('Home');
-          },
-        });
-      },
-    });
+          }
+          setErrors({
+            email: 'Something went wrong',
+            password: 'Something went wrong',
+          });
+        },
+        onCompleted: () => {
+          reset('Home');
+        },
+      });
+    },
+  });
 
   return (
     <KeyboardAvoidingView
@@ -77,6 +81,7 @@ const Login: React.FC = () => {
             input={{
               onChangeText: handleChange('email'),
               keyboardType: 'email-address',
+              autoCapitalize: 'none',
             }}
             error={errors.email}
           />
