@@ -3,7 +3,12 @@ import { User } from "../wire/User";
 import { CurrentUser, UserContext } from "../context";
 import prisma from "../lib/prisma";
 import Cryptography from "../lib/crypto";
-import { InvalidCredentialsError } from "../lib/errors";
+import {
+  InvalidCredentialsError,
+  InvalidParametersError,
+  convertToPrismaError,
+} from "../lib/errors";
+import { PrismaClient } from "@prisma/client";
 
 @Resolver()
 export default class UserResolver {
@@ -13,16 +18,25 @@ export default class UserResolver {
     @Arg("password") password: string,
     @Ctx() { req }: UserContext
   ): Promise<User> {
-    const user = await prisma.user.create({
-      data: {
-        email: email.toLowerCase(),
-        password: await Cryptography.hash(password),
-      },
-    });
+    try {
+      const user = await prisma.user.create({
+        data: {
+          email,
+          password: await Cryptography.hash(password),
+        },
+      });
 
-    req.session.userId = user.id;
+      req.session.userId = user.id;
+      return user;
+    } catch (unknownError) {
+      const error = convertToPrismaError(unknownError);
+      if (error && error.code === "P2002") {
+        // TODO: make sure this is actually an email error
+        throw new InvalidParametersError("email");
+      }
 
-    return user;
+      throw error;
+    }
   }
 
   @Mutation(() => User)
@@ -33,7 +47,7 @@ export default class UserResolver {
   ): Promise<User> {
     const user = await prisma.user.findUnique({
       where: {
-        email: email.toLowerCase(),
+        email,
       },
     });
 

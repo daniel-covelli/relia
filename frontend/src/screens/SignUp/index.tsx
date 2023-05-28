@@ -13,6 +13,7 @@ import {
 
 import { useCreateUserMutation } from 'generated/graphql';
 
+import { isInvalidParametersError } from 'utils/errors';
 import { useForm, useKeyboard } from 'utils/hooks';
 import { navigationRef, reset } from 'utils/navigation';
 import { isEmail, isPasswordValid } from 'utils/validation';
@@ -52,11 +53,10 @@ const SignUp: React.FC = () => {
           password: data.password,
         },
         onError: error => {
-          // TODO: standardize error messaging
-          if (error.message.includes('Unique')) {
+          if (isInvalidParametersError(error)) {
             return setErrors({ email: 'Email already in use' });
           }
-          // TODO: add generic error toast
+          return setErrors({ email: 'Something went wrong' });
         },
         onCompleted: () => {
           reset('Home');
