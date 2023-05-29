@@ -14,6 +14,7 @@ import * as Toast from 'components/Toast';
 
 import { useCreateUserMutation } from 'generated/graphql';
 
+import { isInvalidParametersError } from 'utils/errors';
 import { useForm, useKeyboard } from 'utils/hooks';
 import { navigationRef, reset } from 'utils/navigation';
 import { isEmail, isPasswordValid } from 'utils/validation';
@@ -53,11 +54,10 @@ const SignUp: React.FC = () => {
           password: data.password,
         },
         onError: error => {
-          return Toast.show();
-          // if (isInvalidParametersError(error)) {
-          //   return setErrors({ email: 'Email already in use' });
-          // }
-          // return setErrors({ email: 'Something went wrong' });
+          if (isInvalidParametersError(error)) {
+            return setErrors({ email: 'Email already in use' });
+          }
+          Toast.show();
         },
         onCompleted: () => {
           reset('Home');
@@ -119,8 +119,7 @@ const SignUp: React.FC = () => {
         )}
         <Footer
           title="Sign up"
-          // button={{ onPress: handleSubmit }}
-          button={{ onPress: () => Toast.show() }}
+          button={{ onPress: handleSubmit }}
           container={{ style: appStyles.padding_h_32 }}
         />
       </Screen>

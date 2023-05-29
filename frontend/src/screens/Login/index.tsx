@@ -10,6 +10,7 @@ import {
   Screen,
   TextLink,
 } from 'components';
+import * as Toast from 'components/Toast';
 
 import { useLoginMutation } from 'generated/graphql';
 
@@ -53,10 +54,7 @@ const Login: React.FC = () => {
               password: 'Invalid password',
             });
           }
-          setErrors({
-            email: 'Something went wrong',
-            password: 'Something went wrong',
-          });
+          Toast.show();
         },
         onCompleted: () => {
           reset('Home');
