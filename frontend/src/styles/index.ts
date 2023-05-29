@@ -207,6 +207,34 @@ const appStyles = StyleSheet.create({
     paddingVertical: 32,
   },
 
+  margin: {
+    margin: 16,
+  },
+
+  margin_24: {
+    margin: 24,
+  },
+
+  margin_32: {
+    margin: 32,
+  },
+
+  margin_b_4: {
+    marginBottom: 4,
+  },
+
+  margin_b_8: {
+    marginBottom: 8,
+  },
+
+  margin_b: {
+    marginBottom: 16,
+  },
+
+  margin_b_24: {
+    marginBottom: 24,
+  },
+
   margin_v: {
     marginVertical: 16,
   },
@@ -241,6 +269,14 @@ const appStyles = StyleSheet.create({
 
   flex_grow_zero: {
     flexGrow: 0,
+  },
+
+  shadow_container: {
+    elevation: 5,
+    shadowColor: colors.other.black,
+    shadowOffset: { width: 0, height: 0 },
+    shadowRadius: 5,
+    shadowOpacity: 0.3,
   },
 });
 

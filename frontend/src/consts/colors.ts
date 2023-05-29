@@ -63,6 +63,7 @@ export default {
   other: {
     // pink: '#FDD8F5',
     // white: '#FFFFFF',
+    black: '#000000',
     transparent: 'transparent',
   },
 };
