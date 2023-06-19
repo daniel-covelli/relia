@@ -37,13 +37,14 @@ export default class ActivityResolver {
     });
 
     if (activity) {
-      // if the category already exists, update it
-      if (activity.categories.find((category) => category.type === args.type)) {
+      const category = activity.categories.find(
+        (category) => category.type === args.type
+      );
+      if (category) {
+        // if the category already exists, update it
         await prisma.category.update({
           where: {
-            id: activity.categories.find(
-              (category) => category.type === args.type
-            )?.id,
+            id: category.id,
           },
           data: {
             description: args.description,
