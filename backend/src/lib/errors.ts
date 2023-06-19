@@ -1,4 +1,3 @@
-import { Prisma } from "@prisma/client";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime";
 import { GraphQLError, GraphQLErrorOptions } from "graphql";
 
@@ -29,7 +28,7 @@ export class InvalidParametersError extends HttpGraphQLError {
 }
 
 export const convertToPrismaError = (error: unknown) => {
-  if (!(error instanceof Prisma.PrismaClientKnownRequestError)) {
+  if (!(error instanceof PrismaClientKnownRequestError)) {
     return undefined;
   }
   return error;
