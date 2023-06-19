@@ -17,6 +17,7 @@ import cors, { CorsOptions } from "cors";
 import http from "http";
 import Redis from "ioredis";
 import UserResolver from "./resolvers/UserResolver";
+import ActivityResolver from "./resolvers/ActivityResolver";
 
 const PORT = process.env.PORT || 4000;
 const COOKIE_DOMAIN = process.env.COOKIE_DOMAIN || "localhost";
@@ -51,7 +52,7 @@ app.use(cors(corsConfig));
 const httpServer = http.createServer(app);
 
 const schema = tq.buildSchemaSync({
-  resolvers: [GeneralResolver, UserResolver],
+  resolvers: [GeneralResolver, UserResolver, ActivityResolver],
   authChecker: userAuthChecker,
   scalarsMap: [{ type: GraphQLScalarType, scalar: DateTimeResolver }],
   validate: { forbidUnknownValues: false },
