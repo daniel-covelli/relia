@@ -2,8 +2,8 @@
   "name": "relia-backend",
   "scripts": {
     "dev": "ts-node-dev --no-notify --respawn --transpile-only src/index.ts",
-    "postinstall": "prisma generate",
-    "build": "tsc",
+    "postinstall": "prisma generate && tsc",
+    "build": "prisma generate",
     "migrate": "prisma migrate dev --name",
     "start": "node dist/index.js",
     "infra:up": "docker-compose up -d",
