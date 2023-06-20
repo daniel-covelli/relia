@@ -18,7 +18,7 @@ model User {
   id        String     @id @default(cuid()) @db.VarChar(32)
   email     String     @unique @db.Citext()
   password  String?
-  activity  Activity[]
+  activity  Activity[] 
 }
 
 model Activity {
